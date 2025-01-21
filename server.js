@@ -4,7 +4,7 @@ const db = require('./db')
 require('dotenv').config()
 const bodyparser = require('body-parser')
 app.use(bodyparser.json())
-const { jwtAuthMiddleware, jwtgeneratetoken } = require('../jwt')
+const { jwtAuthMiddleware, jwtgeneratetoken } = require('./jwt')
 
 userroute = require('./routes/userRoutes')
 candidateroute = require('./routes/candidateRoutes')

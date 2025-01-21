@@ -65,13 +65,13 @@ router.put('/profile/password', jwtAuthMiddleware, async (req, res) => {
     try {
         userid = req.user.id
         const { currpass, newpass } = req.body
-        user = User.findById(userid)
+        user = await User.findById(userid)
         pass = await user.comparePassword(currpass)
         if (!pass) {
             return res.status(401).json({ message: 'Invalid password', error: error.message });
         }
         user.password = newpass
-        await user.save
+        await user.save()
         res.status(201).json({ responsemsg: "Password updated" });
     } catch (error) {
         res.status(500).json({ message: 'Error saving person', error: error.message });
